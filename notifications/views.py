@@ -21,6 +21,11 @@ class CreateSenderWithNotificationsView(APIView):
                 {"success": False, "message": str(exc), "details": {}},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+        except Exception as exc: #debug
+            return Response(
+                {"success": False, "message": "Unexpected error", "details": str(exc)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
         return Response(
             {
                 "success": True,
@@ -30,3 +35,7 @@ class CreateSenderWithNotificationsView(APIView):
             },
             status=status.HTTP_201_CREATED,
         )
+
+
+
+
