@@ -27,6 +27,7 @@ class Notification(models.Model):
         related_name="notifications",
         on_delete=models.CASCADE
     )
+    title = models.CharField(max_length=150)
     channel = models.CharField(max_length=10, choices=CHANNEL_VAR)
     message = models.TextField()
     status = models.CharField(

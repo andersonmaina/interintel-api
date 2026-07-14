@@ -3,7 +3,7 @@ from .views import CreateSenderWithNotificationsView
 
 urlpatterns = [
     path(
-        "senders/bulk/",
+        "notifications/bulk/",
         CreateSenderWithNotificationsView.as_view(),
         name="sender-bulk-create",
     ),
