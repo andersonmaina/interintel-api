@@ -22,4 +22,8 @@ def create_sender_with_notifications(validated_data):
         notification_objs = [
             Notification(sender=sender, **data) for data in notifications_data
         ]
-        return sender, notification_objs
+        cap = 100
+        Notification.objects.bulk_create(notification_objs, batch_size=cap) #protect from unusually large notifications
+
+    return sender, notification_objs
+
