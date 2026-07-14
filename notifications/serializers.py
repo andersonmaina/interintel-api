@@ -14,3 +14,8 @@ class SenderNotificationSerializer(serializers.ModelSerializer):
         model = Sender
         fields = ["id", "name", "email", "notifications", "created_at"]
         read_only_fields = ["id", "created_at"]
+
+    def validate_email(self, value):
+        if not value:
+            raise serializers.ValidationError("Sender email required.")
+        return value
