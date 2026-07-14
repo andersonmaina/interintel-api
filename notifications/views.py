@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import SenderNotificationSerializer
+from .serializers import SenderNotificationSerializer, NotificationSerializer
 from .services import create_sender_with_notifications, EmptyNotificationsError
 
 # Create your views here.
@@ -21,4 +21,12 @@ class CreateSenderWithNotificationsView(APIView):
                 {"success": False, "message": str(exc), "details": {}},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-        return Response({"detail": "created"})
+        return Response(
+            {
+                "success": True,
+                "sender_id": sender.id,
+                "created_count": len(notifications),
+                "notifications": NotificationSerializer(notifications, many=True).data,
+            },
+            status=status.HTTP_201_CREATED,
+        )
