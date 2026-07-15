@@ -128,5 +128,7 @@ python manage.py test notifications.tests.test_services #for testing service log
    http://127.0.0.1:8000/admin/
 ```
 4.Log in with your superuser credentials.
+
 5.Click **Senders** to confirm the sender was created.
+
 6.Click **Notifications** to confirm all notifications were created.
